@@ -10,7 +10,8 @@ public class ContactList {
     	
     }
     /**
-     * Creates a new Person object and adds it to the list if there is room
+     * Creates a new Person object and adds it to the list if there is room 
+     * but does not allow for the addition to the list if the last name is left blank.
      */
     public void addNewPerson() {
     	
