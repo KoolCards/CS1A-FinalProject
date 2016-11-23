@@ -1,8 +1,9 @@
+import java.util.ArrayList;
 /**
   * One object of class ContactList represents the contact information for one group of people.
   */
 public class ContactList {
-    private Person list[];
+    private ArrayList<Person> personList=new ArrayList<>();;
     /**
      * Constructor that allocates space for the list.
      */
