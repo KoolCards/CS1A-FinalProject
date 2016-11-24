@@ -8,7 +8,11 @@ public class TestPerson {
 		contactlist1 = new ContactList();
 		contactlist1.addNewPerson();
 		contactlist1.printList();
-		Person person1;
+		contactlist1.addNewPerson();
+		contactlist1.printList();
+		contactlist1.addNewPerson();
+		contactlist1.printList();
+		/*Person person1;
 		person1 = new Person();
 		person1.read();
 		person1.setFirstName(dummyText);
@@ -17,7 +21,7 @@ public class TestPerson {
 		person1.setEmail(dummyText);
 		person1.setPhone(dummyText);
 		person1.setNotes(dummyText);
-		System.out.println("Person #1: " + person1);
+		System.out.println("Person #1: " + person1);*/
 	}
 }
 /*
