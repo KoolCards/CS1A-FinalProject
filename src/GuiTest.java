@@ -9,6 +9,7 @@ public class GuiTest extends JFrame{
 	JTextField firstNameText, lastNameText,streetAddressText, emailAddressText, phoneText,
 		notesText;
 	JTextArea notes;
+	JButton addContact;
 	public static void main(String[] args){
 		new GuiTest();
 	}
@@ -53,6 +54,9 @@ public class GuiTest extends JFrame{
 		notes.setLineWrap(true);
 		notes.setWrapStyleWord(true);
 		addComp(thePanel, notes, 0, 5, 4, 1, GridBagConstraints.EAST, GridBagConstraints.NONE);
+		
+		addContact = new JButton("Add New Contact");
+		addComp(thePanel, addContact, 2, 20, 1, 1, GridBagConstraints.SOUTHEAST, GridBagConstraints.NONE);
 		
 		this.add(thePanel);
 		// Adjusts the size of the frame to best work for the components
