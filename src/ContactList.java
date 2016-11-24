@@ -3,7 +3,7 @@ import java.util.ArrayList;
   * One object of class ContactList represents the contact information for one group of people.
   */
 public class ContactList {
-    private ArrayList<Person> personList=new ArrayList<>();;
+    private ArrayList<Object> personList=new ArrayList<>();;
     /**
      * Constructor that allocates space for the list.
      */
