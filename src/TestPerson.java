@@ -8,6 +8,8 @@ public class TestPerson {
 		contactlist1 = new ContactList();
 		contactlist1.addNewPerson();
 		contactlist1.addNewPerson();
+		contactlist1.addNewPerson();
+		contactlist1.printList();
 		System.out.println(contactlist1.searchByLast());
 		/*Person person1;
 		person1 = new Person();

@@ -34,6 +34,12 @@ public class Person {
 		firstName = newFirstName;
 	}
 	/**
+	 * Returns the value of the first name.
+	 */
+	public String getFirstName () {
+		return firstName;
+	}
+	/**
 	 * Sets the value of newLastName to lastName.
 	 */
 	public void setLastName (String newLastName) {
