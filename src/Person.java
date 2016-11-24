@@ -37,8 +37,7 @@ public class Person {
 	 * Sets the value of newLastName to lastName.
 	 */
 	public void setLastName (String newLastName) {
-		lastName = newLastName;
-		
+		lastName = newLastName;	
 	}
 	/**
 	 * Returns the value of the last name.
@@ -74,8 +73,7 @@ public class Person {
 	 * Returns a string containing all the contact information for a single person.
 	 */
 	public String toString() {
-		String personInfo = firstName + " " + lastName + " " + streetAddress + " " + " " + email + " " + " " + phone
-				+ " " + notes;
+		String personInfo = firstName + "\t" + lastName + "\t" + streetAddress + "\t" + email + "\t" + phone + "\t" + notes;
 		return personInfo;
 	}
 }

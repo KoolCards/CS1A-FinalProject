@@ -7,11 +7,8 @@ public class TestPerson {
 		ContactList contactlist1;
 		contactlist1 = new ContactList();
 		contactlist1.addNewPerson();
-		contactlist1.printList();
 		contactlist1.addNewPerson();
-		contactlist1.printList();
-		contactlist1.addNewPerson();
-		contactlist1.printList();
+		System.out.println(contactlist1.searchByLast());
 		/*Person person1;
 		person1 = new Person();
 		person1.read();

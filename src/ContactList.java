@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Scanner;
 /**
   * One object of class ContactList represents the contact information for one group of people.
   */
@@ -26,6 +27,24 @@ public class ContactList {
     		personList.remove(currentIndex);
     	}
     }
+    /**
+     * Creates a new Person object and adds it to the list 
+     */
+	public String searchByLast() {
+		Scanner systemInput = new Scanner (System.in);
+		System.out.println("Enter the last name to search for in the database");
+		String lastName = systemInput.nextLine();
+		String retrieveContactList = "";
+		for (int i = 0; i < personList.size(); i++) {
+			Person temPerson = (Person) personList.get(i);
+			String temLastName = temPerson.getLastName();
+			if (temLastName.equals(lastName)) {
+				retrieveContactList += temPerson + "\n";
+			}
+		}
+		return retrieveContactList;
+	}
+
     /**
      * Prints the entire contact list to the console.
      */
