@@ -1,5 +1,4 @@
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.*;
 /**
   * One object of class ContactList represents the contact information for one group of people.
   */
@@ -28,7 +27,7 @@ public class ContactList {
     	}
     }
     /**
-     * Creates a new Person object and adds it to the list 
+     * Searches for the Person object by the specified last name and returns the contact information for that person. 
      */
 	public String searchByLast() {
 		Scanner systemInput = new Scanner (System.in);
