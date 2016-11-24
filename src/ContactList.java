@@ -11,17 +11,18 @@ public class ContactList {
     	
     }
     /**
-     * Creates a new Person object and adds it to the list if there is room 
+     * Creates a new Person object and adds it to the list 
      * but does not allow for the addition to the list if the last name is left blank.
+     * This method calls the read method in the Person object to receive input from the console
+     * for the Person object.
      */
     public void addNewPerson() {
     	
     }
     /**
-     * Returns a String containing all the data in the list.
+     * Prints the entire contact list to the console.
      */
-    public String printList() {
-    	String allEntries = "";
-    	return allEntries;
+    public void printList() {
+    	
     }
 }

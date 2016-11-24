@@ -7,7 +7,7 @@ public class TestPerson {
 		ContactList contactlist1;
 		contactlist1 = new ContactList();
 		contactlist1.addNewPerson();
-		System.out.println("Full Contact List: " + contactlist1.printList());
+		contactlist1.printList();
 		Person person1;
 		person1 = new Person();
 		person1.read();

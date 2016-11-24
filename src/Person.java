@@ -12,6 +12,7 @@ public class Person {
 	 * Reads the console for user input for the first name, last name, street address, email, phone, and notes.
 	 */
 	public void read() {
+		
 	}
 	/**
 	 * Sets the value of newFirstName to firstName.
