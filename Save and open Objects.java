@@ -1,3 +1,7 @@
+Private ContactList myContactList;
+/*
+Store the object "myContactList" in file
+*/
 	public void Save() {
 		FileOutputStream outFile;
 		ObjectOutputStream outObject;
@@ -12,7 +16,9 @@
 		}
 		 myContactList=null;
 	}
-
+/*
+Read the object "myContactList" back in from the file
+*/
 	public void Open() {
 		FileInputStream inputFile;
 		ObjectInputStream inputObject;
