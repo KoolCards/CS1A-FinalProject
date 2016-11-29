@@ -11,8 +11,8 @@ Store the object "myContactList" in file
 			outObject.writeObject(myContactList);
 			outFile.close();
 			outObject.close();
-		} catch (IOException ioe) {
-			System.out.println("Error writing objects to the file: " + ioe.getMessage());
+		} catch (IOException e) {
+			System.out.println("Error writing objects to the file: " + e.getMessage());
 		}
 		 myContactList=null;
 	}
@@ -30,8 +30,8 @@ Read the object "myContactList" back in from the file
 			inputObject.close();
 		} catch (IOException e) {
 			System.out.println("Error reading object from the file" + e.getMessage());
-		} catch (ClassNotFoundException cnfe) {
-			System.out.println("Error in casting to Rectangle: " + cnfe);
+		} catch (ClassNotFoundException e) {
+			System.out.println("Error in casting to Rectangle: " + e);
 		}
 	}
 }
