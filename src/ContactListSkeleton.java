@@ -26,4 +26,14 @@ public class ContactListSkeleton {
      */
     public void printList() {
     }
+    /**
+	 * Stores the ContactList object into a file on disk.
+	*/
+	public void save() {
+	}
+	/**
+	 * Reads the ContactList object from the stored file and stores it into the contact list.
+	 */
+	public void open() {
+	}
 }

@@ -22,6 +22,8 @@ public class TestPersonSkeleton {
 		person1.setNotes(dummyText);
 		System.out.println("Person #1: " + person1);
 		System.out.println(person1.getFirstName() + " " + person1.getLastName());
+		contactlist1.save();
+		contactlist1.open();
 	}
 }
 /*
