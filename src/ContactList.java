@@ -1,6 +1,3 @@
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.Serializable;
 import java.util.*;
 /**
@@ -14,6 +11,7 @@ public class ContactList implements Serializable{
      * but does not allow for the addition to the list if the last name is left blank.
      * This method calls the read method in the Person object to receive input from the console
      * for the Person object.
+     * R.L.
      */
     public void addNewPerson() {
     	Person newPerson = new Person();
