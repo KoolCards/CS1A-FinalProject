@@ -1,29 +1,51 @@
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+
 /**
- * Tests class ContactList and Person by calling all methods in ContactList and Person
+ * Tests class ContactList and Person by calling all methods in ContactList and
+ * Person
  */
 public class TestPerson {
 	public static void main(String args[]) {
-		final String dummyText = ""; 
-		ContactList contactlist1;
+		ContactList contactlist1 = new ContactList();
 		contactlist1 = new ContactList();
 		contactlist1.addNewPerson();
 		contactlist1.addNewPerson();
-		contactlist1.addNewPerson();
-		contactlist1.printList();
 		System.out.println(contactlist1.searchByLast());
-		/*Person person1;
-		person1 = new Person();
-		person1.read();
-		person1.setFirstName(dummyText);
-		person1.setLastName(dummyText);
-		person1.setAddress(dummyText);
-		person1.setEmail(dummyText);
-		person1.setPhone(dummyText);
-		person1.setNotes(dummyText);
-		System.out.println("Person #1: " + person1);*/
+		FileOutputStream outFile;
+		ObjectOutputStream outObject;
+		try {
+			outFile = new FileOutputStream("data");
+			outObject = new ObjectOutputStream(outFile);
+			outObject.writeObject(contactlist1);
+			outFile.close();
+			outObject.close();
+		} 
+		catch (IOException ioe) {
+			System.out.println("Error writing objects to the file: " + ioe.getMessage());
+		}
+		contactlist1 = null;
+		FileInputStream inFile;
+		ObjectInputStream inObject;
+		try {
+			inFile = new FileInputStream("data");
+			inObject = new ObjectInputStream(inFile);
+			contactlist1 = (ContactList) inObject.readObject();
+			inFile.close();
+			inObject.close();
+		} 
+		catch (IOException ioe) {
+			System.out.println("Error reading from the file: " + ioe.getMessage());
+		} 
+		catch (ClassNotFoundException cnfe) {
+			System.out.println("Error in casting to Rectangle: " + cnfe);
+		}
+		contactlist1.printList();
 	}
 }
 /*
-Full Contact List: 
-Person #1: 
-*/
+ * Full Contact List: Person #1:
+ */

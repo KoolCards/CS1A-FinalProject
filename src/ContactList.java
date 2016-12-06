@@ -1,9 +1,14 @@
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.Serializable;
 import java.util.*;
 /**
   * One object of class ContactList represents the contact information for one group of people.
   */
-public class ContactList {
+public class ContactList implements Serializable{
     private ArrayList<Person> personList=new ArrayList<>();
+	private static final long serialVersionUID = 1L;
     /**
      * Creates a new Person object and adds it to the list 
      * but does not allow for the addition to the list if the last name is left blank.

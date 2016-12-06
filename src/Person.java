@@ -1,8 +1,10 @@
+import java.io.Serializable;
 import java.util.Scanner;
 /**
  * One object of class Person represents the contact information for one person.
  */
-public class Person {
+public class Person implements Serializable {
+	private static final long serialVersionUID = 1L;
 	private String firstName;
 	private String lastName;
 	private String streetAddress;
