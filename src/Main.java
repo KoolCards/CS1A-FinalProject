@@ -1,45 +1,44 @@
+/**
+ * Tests Use Case 1 by initializing a ContactList object, adding two Person objects to the list and
+ * calls the printList() method after each add in order to illustrate that those Person objects were 
+ * added to the ContactList object
+ */
 public class Main {
 	public static void main (String [] args) {
 		ContactList contactlist1;
 		contactlist1 = new ContactList();
 		contactlist1.addNewPerson();
+		contactlist1.printList();
 		contactlist1.addNewPerson();
-		contactlist1.addNewPerson();
+		contactlist1.printList();
 	}
 }
 /*
 Enter the first name.
-John
+Kevin
 Enter the last name.
-Smith
+Rapp
 Enter the street address.
-1000 Avenue
+1312 California Street
 Enter the email address.
-johnsmith@gmail.com
+kevin.rapp@gmail.com
 Enter the phone number.
-100-100-1000
+321-867-5309
 Enter the notes.
-None
+Likes walks in the park
+Kevin	Rapp	1312 California Street	kevin.rapp@gmail.com	321-867-5309	Likes walks in the park
 Enter the first name.
-Joseph
+Stevie
 Enter the last name.
-
+Wonder
 Enter the street address.
-1900 WestSide
+123 Piano Way
 Enter the email address.
-joseph@gmail.com
+OhIWonder@hotmail.com
 Enter the phone number.
-100-100-1111
+None
 Enter the notes.
-None
-Enter the first name.
-
-Enter the last name.
-Sinclair
-Enter the street address.
-
-Enter the email address.
-
-Enter the phone number.
-
-Enter the notes.*/
+Very superstitious
+Kevin	Rapp	1312 California Street	kevin.rapp@gmail.com	321-867-5309	Likes walks in the park
+Stevie	Wonder	123 Piano Way	OhIWonder@hotmail.com	None	Very superstitious
+*/
