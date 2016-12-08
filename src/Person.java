@@ -11,6 +11,19 @@ public class Person implements Serializable {
 	private String email;
 	private String phone;
 	private String notes;
+	
+	public Person () {
+		
+	}
+	
+	public Person (String firstName, String lastName, String streetAddress, String email, String phone, String notes) {
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.streetAddress = streetAddress;
+		this.email = email;
+		this.phone = phone;
+		this.notes = notes;
+	}
 	/**
 	 * Reads the console for user input for the first name, last name, street address, email, phone, and notes.
 	 * K.S.
