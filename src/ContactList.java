@@ -15,12 +15,9 @@ public class ContactList implements Serializable{
      */
     public void addNewPerson() {
     	Person newPerson = new Person();
-    	personList.add(newPerson);
     	newPerson.read();
-    	int currentIndex = personList.size() - 1;
-    	Person newPerson2 = personList.get(currentIndex);
-    	if (newPerson2.getLastName().equals("")) {
-    		personList.remove(currentIndex);
+    	if (!newPerson.getLastName().equals("")) {
+    		personList.add(newPerson);
     	}
     	Collections.sort(personList, new NameComparator());
     }
@@ -51,5 +48,12 @@ public class ContactList implements Serializable{
     	for (int counter = 0; counter < personList.size(); counter++) {
     		System.out.println(personList.get(counter));
     	}
+    }
+    public String toString() {
+    	String contact = "";
+    	for (int counter = 0; counter < personList.size(); counter++) {
+    		contact += personList.get(counter) + "       ";
+    	}
+    	return contact;
     }
 }

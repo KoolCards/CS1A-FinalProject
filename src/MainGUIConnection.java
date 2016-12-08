@@ -1,11 +1,39 @@
-public class MainGUIConnection {
-	public static void main() {
-		final String dummyText = ""; 
-		ContactList contactlist1;
-		contactlist1 = new ContactList();
-		contactlist1.addNewPerson();
-		contactlist1.addNewPerson();
-		System.out.println(contactlist1.searchByLast());
-        GuiTest g = new GuiTest();
-    }
+class Controller implements ActionListener {
+
+     private Model model;
+
+     private View view;
+
+ 
+
+     public Controller() {
+
+          view = new View(this);
+
+          model = new Model();
+
+     }
+
+   
+
+     /**
+
+      * Instantiates itself to get its own constructor going.
+
+      */
+
+     public static void main(String args[]) {
+
+          Controller ctr = new Controller();
+
+     }
+
+           
+
+     public void actionPerformed (ActionEvent evt) {
+
+       view.show(model.beep());
+
+     }
+
 }
