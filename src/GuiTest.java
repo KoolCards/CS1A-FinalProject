@@ -1,22 +1,26 @@
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.*;
 import javax.swing.event.*;
 
-public class GuiTest extends JFrame{
-	JLabel firstNameLabel, lastNameLabel, streetAddressLabel, emailAddressLabel, phoneLabel,
+public class GuiTest extends JFrame implements ActionListener{
+	private JLabel firstNameLabel, lastNameLabel, streetAddressLabel, emailAddressLabel, phoneLabel,
 		notesLabel;
-	JTextField firstNameText, lastNameText,streetAddressText, emailAddressText, phoneText,
-		notesText;
-	JTextArea notes;
-	JButton addContact;
+	private JTextField firstNameText, lastNameText,streetAddressText, emailAddressText, phoneText;
+	private JTextArea notesText;
+	private JButton addContact;
+	private String firstName, lastName, streetAddress, phone, email, notes;
+	private ContactList contactList;
 	public static void main(String[] args){
 		new GuiTest();
+		
 	}
 	public GuiTest(){
 		// Create the frame, position it and handle closing it
 		this.setLocationRelativeTo(null);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setTitle("Add New Contact");
 		
 		JPanel thePanel = new JPanel();
@@ -49,14 +53,14 @@ public class GuiTest extends JFrame{
 		
 		notesLabel = new JLabel("Notes");
 		addComp(thePanel, notesLabel, 0, 5, 1, 1, GridBagConstraints.NORTHWEST, GridBagConstraints.NONE);
-		notes = new JTextArea(8, 30);
-		notes.setText("Additional notes");
-		notes.setLineWrap(true);
-		notes.setWrapStyleWord(true);
-		addComp(thePanel, notes, 0, 5, 4, 1, GridBagConstraints.EAST, GridBagConstraints.NONE);
+		notesText = new JTextArea(8, 30);
+		notesText.setLineWrap(true);
+		notesText.setWrapStyleWord(true);
+		addComp(thePanel, notesText, 0, 5, 4, 1, GridBagConstraints.EAST, GridBagConstraints.NONE);
 		
 		addContact = new JButton("Add New Contact");
 		addComp(thePanel, addContact, 2, 20, 1, 1, GridBagConstraints.SOUTHEAST, GridBagConstraints.NONE);
+		addContact.addActionListener(this);	
 		
 		this.add(thePanel);
 		// Adjusts the size of the frame to best work for the components
@@ -64,7 +68,17 @@ public class GuiTest extends JFrame{
 		this.setVisible(true);
 		// Define if the user can resize the frame (true by default)
 		this.setResizable(false);	
-	}
+		
+		contactList = new ContactList();
+   	}
+
+   	public void actionPerformed (ActionEvent e){
+   		
+   		if (e.getSource () == addContact){
+              addNewContact();
+              
+        }
+   		}	
 	// Sets the rules for a component destined for a GridBagLayout
 	// and then adds it 
 	private void addComp(JPanel thePanel, JComponent comp, int xPos, int yPos, int compWidth, int compHeight, int place, int stretch){
@@ -80,7 +94,35 @@ public class GuiTest extends JFrame{
 		gridConstraints.anchor = place;
 		gridConstraints.fill = stretch;
 		
-		thePanel.add(comp, gridConstraints);		
-	}	
-
+		thePanel.add(comp, gridConstraints);
+	}
+	/*
+	 * Creates a new person object and adds it to Contact List
+	 */
+	 public void addNewContact(){  
+		 firstName = firstNameText.getText();
+		 lastName= lastNameText.getText();
+		 streetAddress= streetAddressText.getText();
+		 phone= phoneText.getText();
+		 email= emailAddressText.getText();
+		 notes= notesText.getText();
+		   	if(lastName.equals("")){
+		   		JOptionPane.showMessageDialog(null, "Please enter last name.");
+		   	}else{
+			   	  //create a Person object and pass it to ArrayList to save it
+			   	  Person person = new Person(firstName,lastName, streetAddress, phone, email,notes);
+			   	  contactList.addNewPersonFromGUI(person);//Add new person to Array
+			   	  JOptionPane.showMessageDialog(null, person.toString());
+		      }
+		 clear();
+	
+	     }
+	 public void clear(){
+		 firstNameText.setText("");
+		 lastNameText.setText("");
+		 streetAddressText.setText("");
+		 phoneText.setText("");
+		 emailAddressText.setText("");
+		 notesText.setText("");  	
+		}
 }
