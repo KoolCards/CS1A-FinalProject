@@ -281,6 +281,8 @@ public class HomePage extends JFrame implements ActionListener{
 		private JTextField lastNameField;
 		private JButton searchJButton;
 		private TextArea listTextArea;
+		private JPanel upJPanel;
+		private JPanel downJPanel;
 		public  Search() {
 			this.setLayout(new BorderLayout());
 			lastNameField=new JTextField(10);
@@ -289,8 +291,8 @@ public class HomePage extends JFrame implements ActionListener{
 			setSize(300,485);
 			setVisible(true);
 			setLocation(300,180);
-			JPanel upJPanel=new JPanel(new FlowLayout(2));
-			JPanel downJPanel=new JPanel();
+			upJPanel=new JPanel(new FlowLayout(2));
+			downJPanel=new JPanel();
 			upJPanel.setSize(300, 20);
 			upJPanel.add(lastNameField);
 			upJPanel.add(searchJButton);
@@ -301,7 +303,9 @@ public class HomePage extends JFrame implements ActionListener{
 		}
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			listTextArea.setText(myContactList.SearchbyLast(lastNameField.getText()));
+		if (myContactList.SearchbyLast(lastNameField.getText()).equals("")) {
+			JOptionPane.showMessageDialog(downJPanel,"No contact matched!");
+		}
 		}
 	}
 
