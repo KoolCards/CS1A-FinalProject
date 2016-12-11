@@ -251,6 +251,7 @@ public class HomePage extends JFrame implements ActionListener{
 		private TextArea printTextArea;
 		private JPanel jPanel;
 		public  Print() {
+			setTitle("Contact List");
 			printTextArea=new TextArea(29,35);
 			jPanel=new JPanel();
 			setSize(300, 485);
@@ -284,10 +285,11 @@ public class HomePage extends JFrame implements ActionListener{
 		private JPanel upJPanel;
 		private JPanel downJPanel;
 		public  Search() {
+			setTitle("Search");
 			this.setLayout(new BorderLayout());
 			lastNameField=new JTextField(10);
 			searchJButton=new JButton("Search");
-			listTextArea=new TextArea(25,25);
+			listTextArea=new TextArea(25,35);
 			setSize(300,485);
 			setVisible(true);
 			setLocation(300,180);
