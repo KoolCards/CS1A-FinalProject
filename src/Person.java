@@ -3,7 +3,7 @@ import java.util.Scanner;
 /**
  * One object of class Person represents the contact information for one person.
  */
-public class Person implements Serializable {
+public class Person implements Comparable<Person>, Serializable {
 	private static final long serialVersionUID = 1L;
 	private String firstName;
 	private String lastName;
@@ -104,7 +104,23 @@ public class Person implements Serializable {
 	 * K.S.
 	 */
 	public String toString() {
-		String personInfo = firstName + "\t" + lastName + "\t" + streetAddress + "\t" + email + "\t" + phone + "\t" + notes;
-		return personInfo;
+		String printString="";
+		printString=firstName+" "+lastName+":\n"+"Address: "+ streetAddress +"\n"+"email: "+email+
+		"\n"+"phone: "+phone+"\n"+"notes: "+notes+"\n";
+		return printString;
+	}
+	@Override
+	public int compareTo(Person person1) {
+		if (this.getLastName().compareToIgnoreCase(person1.getLastName()) > 0) {
+			return 1;
+		} else if (this.getLastName().compareToIgnoreCase(person1.getLastName()) < 0) {
+			return -1;
+		} else if (this.getFirstName().compareToIgnoreCase(person1.getFirstName()) > 0) {
+			return 1;
+		} else if (this.getFirstName().compareToIgnoreCase(person1.getFirstName()) < 0) {
+			return -1;
+		} else {
+			return 0;
+		}
 	}
 }

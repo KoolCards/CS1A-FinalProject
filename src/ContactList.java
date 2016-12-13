@@ -7,27 +7,17 @@ public class ContactList implements Serializable{
     private ArrayList<Person> personList=new ArrayList<>();
 	private static final long serialVersionUID = 1L;
     /**
-     * Creates a new Person object and adds it to the list 
-     * but does not allow for the addition to the list if the last name is left blank.
-     * This method calls the read method in the Person object to receive input from the console
-     * for the Person object.
-     * R.L.
+     * Receives a person object paramaeter and adds it to a list of people. This method also
+     * sorts the people by last name or first name if the last names or the same.
      */
-    public void addNewPerson() {
-    	Person newPerson = new Person();
-    	newPerson.read();
-    	if (!newPerson.getLastName().equals("")) {
-    		personList.add(newPerson);
-    	}
-    	Collections.sort(personList, new NameComparator());
-    }
+	public void addNewPerson(Person newperson) {
+		personList.add(newperson);
+		Collections.sort(personList);
+	}
     /**
      * Searches for the Person object by the specified last name and returns the contact information for that person. 
      */
-	public String searchByLast() {
-		Scanner systemInput = new Scanner (System.in);
-		System.out.println("Enter the last name to search for in the database");
-		String lastName = systemInput.nextLine();
+	public String searchByLast(String lastName) {
 		String retrieveContactList = "";
 		for (int counter = 0; counter < personList.size(); counter++) {
 			Person temPerson = (Person) personList.get(counter);
@@ -44,6 +34,9 @@ public class ContactList implements Serializable{
     /**
      * Prints the entire contact list to the console.
      */
+	public void clear() {
+		personList.clear();
+	}
     public void printList() {
     	for (int counter = 0; counter < personList.size(); counter++) {
     		System.out.println(personList.get(counter));
@@ -52,7 +45,7 @@ public class ContactList implements Serializable{
     public String toString() {
     	String contact = "";
     	for (int counter = 0; counter < personList.size(); counter++) {
-    		contact += personList.get(counter) + "       ";
+    		contact += personList.get(counter) + "\n";
     	}
     	return contact;
     }
