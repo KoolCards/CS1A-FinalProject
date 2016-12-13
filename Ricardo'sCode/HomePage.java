@@ -257,6 +257,7 @@ public class HomePage extends JFrame implements ActionListener{
 			setSize(300, 485);
 			setLocation(DEFUALT_OPEN_LOCATION);
 			setVisible(true);
+			setResizable(false);
 			jPanel.setSize(getSize());
 			printTextArea.setSize(getSize());
 			printTextArea.setEditable(false);
