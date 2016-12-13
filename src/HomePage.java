@@ -22,7 +22,7 @@ import javax.swing.*;
 public class HomePage extends JFrame implements ActionListener{
 	private static final long serialVersionUID = 3636549296071613133L;
 	private static ContactList myContactList= new ContactList();
-	private static final Point DEFUALT_OPEN_LOCATION=new Point(300, 180);
+	private static final Point DEFUALT_OPEN_LOCATION = new Point(300, 180);
 	private static void addComp(JPanel thePanel, JComponent comp, int xPos, int yPos, int compWidth, int compHeight, int place, int stretch){
 		GridBagConstraints gridConstraints = new GridBagConstraints();
 		gridConstraints.gridx = xPos;
@@ -62,9 +62,11 @@ public class HomePage extends JFrame implements ActionListener{
 			myContactList = (ContactList) inputObject.readObject();
 			inputObject.close();
 			inputFile.close();					
-		} catch (IOException e) {
+		} 
+		catch (IOException e) {
 			System.out.println("Error reading object from the file" + e.getMessage());
-		} catch (ClassNotFoundException e) {
+		} 
+		catch (ClassNotFoundException e) {
 			System.out.println("Error in casting to Rectangle: " + e);
 		}
 	}
@@ -316,24 +318,10 @@ public class HomePage extends JFrame implements ActionListener{
 		}
 		}
 	}
-	class Clear extends JFrame implements ActionListener {
-		/**
-		 * 
-		 */
+	class Clear {
 		private static final long serialVersionUID = -4880328478428515838L;
-		private JTextField lastNameField;
-		private JButton clearJButton;
-		private TextArea listTextArea;
-		private JPanel upJPanel;
-		private JPanel downJPanel;
 		public Clear() {
 			clearList();
-		}
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			if (e.getSource () == clearJButton){
-	              clearList();
-	        }
 		}
 		public void clearList(){
 			myContactList.clear();
