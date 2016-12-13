@@ -113,13 +113,17 @@ public class Person implements Comparable<Person>, Serializable {
 	public int compareTo(Person person1) {
 		if (this.getLastName().compareToIgnoreCase(person1.getLastName()) > 0) {
 			return 1;
-		} else if (this.getLastName().compareToIgnoreCase(person1.getLastName()) < 0) {
+		} 
+		else if (this.getLastName().compareToIgnoreCase(person1.getLastName()) < 0) {
 			return -1;
-		} else if (this.getFirstName().compareToIgnoreCase(person1.getFirstName()) > 0) {
+		} 
+		else if (this.getFirstName().compareToIgnoreCase(person1.getFirstName()) > 0) {
 			return 1;
-		} else if (this.getFirstName().compareToIgnoreCase(person1.getFirstName()) < 0) {
+		} 
+		else if (this.getFirstName().compareToIgnoreCase(person1.getFirstName()) < 0) {
 			return -1;
-		} else {
+		} 
+		else {
 			return 0;
 		}
 	}

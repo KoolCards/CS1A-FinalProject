@@ -1,3 +1,5 @@
+import java.io.IOException;
+import java.io.RandomAccessFile;
 import java.io.Serializable;
 import java.util.*;
 /**
@@ -7,7 +9,7 @@ public class ContactList implements Serializable{
     private ArrayList<Person> personList=new ArrayList<>();
 	private static final long serialVersionUID = 1L;
     /**
-     * Receives a person object paramaeter and adds it to a list of people. This method also
+     * Receives a person object parameter and adds it to a list of people. This method also
      * sorts the people by last name or first name if the last names or the same.
      */
 	public void addNewPerson(Person newperson) {
@@ -32,16 +34,30 @@ public class ContactList implements Serializable{
 		return retrieveContactList;
 	}
     /**
-     * Prints the entire contact list to the console.
+     * Clears the current contact list
      */
 	public void clear() {
 		personList.clear();
 	}
+	/**
+     * Clears the entire data file
+     */
+	public void clearList() throws IOException{
+		RandomAccessFile file = new RandomAccessFile("C:/Users/kriss/workspace/CS1A-FinalProject/data", "r");
+		file.setLength(0);
+		file.close();
+	}
+	/**
+     * Prints the contact list to the console
+     */
     public void printList() {
     	for (int counter = 0; counter < personList.size(); counter++) {
     		System.out.println(personList.get(counter));
     	}
     }
+    /**
+     * Returns a string with each contact in the contact list
+     */
     public String toString() {
     	String contact = "";
     	for (int counter = 0; counter < personList.size(); counter++) {

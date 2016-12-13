@@ -125,10 +125,10 @@ public class HomePage extends JFrame implements ActionListener{
 		private static final long serialVersionUID = -623826465110124110L;
 		private JLabel firstNameLabel, lastNameLabel, streetAddressLabel, emailAddressLabel, phoneLabel,
 		notesLabel;
-	private JTextField firstNameText, lastNameText,streetAddressText, emailAddressText, phoneText,notesText;
-	private JButton addContact;
-	private String firstName, lastName, streetAddress, phone, email, notes;
-	public AddContact (){
+		private JTextField firstNameText, lastNameText,streetAddressText, emailAddressText, phoneText,notesText;
+		private JButton addContact;
+		private String firstName, lastName, streetAddress, phone, email, notes;
+		public AddContact (){
 		// Create the frame, position it and handle closing it
 		this.setLocation(DEFUALT_OPEN_LOCATION);
 		this.setTitle("Add New Contact");
@@ -327,29 +327,16 @@ public class HomePage extends JFrame implements ActionListener{
 		private JPanel upJPanel;
 		private JPanel downJPanel;
 		public Clear() {
-			setTitle("Search");
-			this.setLayout(new BorderLayout());
-			lastNameField=new JTextField(10);
-			clearJButton=new JButton("Search");
-			listTextArea=new TextArea(25,35);
-			setSize(300,485);
-			setVisible(true);
-			setLocation(300,180);
-			upJPanel=new JPanel(new FlowLayout(2));
-			downJPanel=new JPanel();
-			upJPanel.setSize(300, 20);
-			upJPanel.add(lastNameField);
-			upJPanel.add(clearJButton);
-			downJPanel.add(listTextArea);
-			clearJButton.addActionListener(this);
-			this.add(upJPanel,BorderLayout.NORTH);
-			this.add(downJPanel,BorderLayout.SOUTH);
+			clearList();
 		}
 		@Override
 		public void actionPerformed(ActionEvent e) {
-		if (myContactList.searchByLast(lastNameField.getText()).equals("")) {
-			JOptionPane.showMessageDialog(downJPanel,"No contact matched!");
+			if (e.getSource () == clearJButton){
+	              clearList();
+	        }
 		}
+		public void clearList(){
+			myContactList.clear();
 		}
 	}
 
