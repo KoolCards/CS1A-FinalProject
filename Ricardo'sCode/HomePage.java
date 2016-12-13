@@ -2,15 +2,15 @@ import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.Point;
 import java.awt.TextArea;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -83,6 +83,8 @@ public class HomePage extends JFrame implements ActionListener{
 			new Print();
 		} else if (clickedbutton.getText() == "Search by lastname") {
 			new Search();
+		} else if (clickedbutton.getText()=="Clear the contactlist") {
+			myContactList.clear(); 
 		}
 	}
 	public HomePage() {
@@ -94,26 +96,30 @@ public class HomePage extends JFrame implements ActionListener{
 				open();
 			}
 		});
-
+		setTitle("Contact List");
+		setResizable(false);
 		JPanel homepageJPanel = new JPanel();
-		JButton addButton, printButton, searchButton;
+		JButton addButton, printButton, searchButton, clearButton;
 		addButton = new JButton("Add a new Contact");
 		printButton = new JButton("Print the Contact List");
 		searchButton = new JButton("Search by lastname");
+		clearButton = new JButton("Clear the contactlist");
 		addButton.addActionListener(this);
 		printButton.addActionListener(this);
 		searchButton.addActionListener(this);
+		clearButton.addActionListener(this);
 		homepageJPanel.add(addButton);
 		homepageJPanel.add(printButton);
 		homepageJPanel.add(searchButton);
+		homepageJPanel.add(clearButton);
 		add(homepageJPanel);
 		setSize(300, 200);
 		setLocation(300, 180);
 		setVisible(true);
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
+setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}
 
-	class AddContact extends JFrame implements ActionListener{
+	class AddContact extends JFrame implements ActionListener,KeyListener{
 		/**
 		 * Open a window to add a new Contact
 		 */
@@ -151,7 +157,7 @@ public class HomePage extends JFrame implements ActionListener{
 		emailAddressText = new JTextField(30);
 		addComp(thePanel, emailAddressText, 0, 8, 2, 1, GridBagConstraints.EAST, GridBagConstraints.NONE);
 		
-		phoneLabel = new JLabel("Phone Number (XXX-XXX-XXXX)");
+		phoneLabel = new JLabel("Phone Number (XXXXXXXXXX)");
 		addComp(thePanel, phoneLabel, 0, 9, 1, 1, GridBagConstraints.WEST, GridBagConstraints.NONE);
 		phoneText = new JTextField(30);
 		addComp(thePanel, phoneText, 0, 10, 2, 1, GridBagConstraints.EAST, GridBagConstraints.NONE);
@@ -162,7 +168,13 @@ public class HomePage extends JFrame implements ActionListener{
 		addComp(thePanel, notesText, 0, 12, 2, 1, GridBagConstraints.EAST, GridBagConstraints.NONE);
 		addContact = new JButton("Add New Contact");
 		addComp(thePanel, addContact, 0, 13, 1, 1, GridBagConstraints.SOUTHEAST, GridBagConstraints.NONE);
-		addContact.addActionListener(this);	
+		addContact.addActionListener(this);
+		firstNameText.addKeyListener(this);
+		lastNameText.addKeyListener(this);
+		streetAddressText.addKeyListener(this);
+		phoneText.addKeyListener(this);
+		emailAddressText.addKeyListener(this);
+		notesText.addKeyListener(this);
 		this.add(thePanel);
 		// Adjusts the size of the frame to best work for the components
 		this.pack();
@@ -193,12 +205,18 @@ public class HomePage extends JFrame implements ActionListener{
 	 */
 	 public void addNewContact(){  
 		 firstName = firstNameText.getText();
+		 if (!firstName.equals("")) {
+			 firstName=firstName.substring(0,1).toUpperCase()+firstName.substring(1).toLowerCase();
+		}
 		 lastName= lastNameText.getText();
+		 if (!lastName.equals("")) {
+			 lastName=lastName.substring(0,1).toUpperCase()+lastName.substring(1).toLowerCase();
+		}
 		 streetAddress= streetAddressText.getText();
 		 phone= phoneText.getText();
 		 email= emailAddressText.getText();
 		 notes= notesText.getText();
-		 String emailFormat="\\w+@\\w+\\.com";
+		 String emailFormat=".*()*.+@\\w+\\.com";
 
 		 System.out.println(phone);
 		   	if(lastName.equals("")){
@@ -207,6 +225,8 @@ public class HomePage extends JFrame implements ActionListener{
 				JOptionPane.showMessageDialog(null, "Please enter correct email");
 			} else if (!isPhone(phone)&&!(phone.equals(""))) {
 				JOptionPane.showMessageDialog(null, "Please enter correct phone number");
+			} else if (firstName.equals("")) {
+				JOptionPane.showMessageDialog(null, "Please enter first name.");
 			}
 		   	else{
 		   		if (!phone.equals("")) {
@@ -219,8 +239,9 @@ public class HomePage extends JFrame implements ActionListener{
 			   	  Person person = new Person(firstName, lastName, streetAddress, email, phone, notes);
 			   	  myContactList.addperson(person);//Add new person to Array
 			   	  JOptionPane.showMessageDialog(null, person.toString());
+			   	 clear();
 		      }
-		 clear();
+		
 	     }
 	 public boolean isPhone(String phone) {
 		 int flag=0;
@@ -245,6 +266,26 @@ public class HomePage extends JFrame implements ActionListener{
 		 emailAddressText.setText("");
 		 notesText.setText("");  	
 		}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		// TODO Auto-generated method stub
+		if (e.getKeyCode()==KeyEvent.VK_ENTER) {
+			addContact.doClick();
+		}
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
 	 
 	}
 	class Print extends JFrame{
@@ -286,6 +327,14 @@ public class HomePage extends JFrame implements ActionListener{
 		private JPanel upJPanel;
 		private JPanel downJPanel;
 		public  Search() {
+			this.addWindowListener(new WindowAdapter() {
+				public void windowOpened(WindowEvent e) {
+					Hide();
+				}
+				public void windowClosing(WindowEvent e) {
+					Show();
+				}
+			});
 			setTitle("Search");
 			this.setLayout(new BorderLayout());
 			lastNameField=new JTextField(10);
@@ -293,7 +342,7 @@ public class HomePage extends JFrame implements ActionListener{
 			listTextArea=new TextArea(25,35);
 			setSize(300,485);
 			setVisible(true);
-			setLocation(300,180);
+			setLocation(DEFUALT_OPEN_LOCATION);
 			upJPanel=new JPanel(new FlowLayout(2));
 			downJPanel=new JPanel();
 			upJPanel.setSize(300, 20);
@@ -308,8 +357,12 @@ public class HomePage extends JFrame implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
 		if (myContactList.SearchbyLast(lastNameField.getText()).equals("")) {
 			JOptionPane.showMessageDialog(downJPanel,"No contact matched!");
+		} else {
+			listTextArea.setText(myContactList.SearchbyLast(lastNameField.getText()));
 		}
-		}
+		
+		
+	}
 	}
 
 }
