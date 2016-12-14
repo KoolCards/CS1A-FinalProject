@@ -115,6 +115,7 @@ public class Person implements Comparable<Person>, Serializable {
 	/**
 	 * Compares two person objects to return the objects in alphabetical order by last name or
 	 * by first name if the last names are the same.
+	 * R.L.
 	 */
 	@Override
 	public int compareTo(Person person1) {
