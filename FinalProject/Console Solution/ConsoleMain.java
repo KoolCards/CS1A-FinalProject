@@ -38,7 +38,10 @@ public class ConsoleMain {
 				Person newPerson = new Person();
 				newPerson.read();
 				System.out.println("------------------------------------");
-				myContactList.addNewPerson(newPerson);
+				if (newPerson.getLastName().equals("")) 
+					System.out.println("Please enter a last name");
+				else
+					myContactList.addNewPerson(newPerson);
 				continue;
 			}
 			else if (comString.equalsIgnoreCase("save")) {
