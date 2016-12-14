@@ -11,11 +11,14 @@ public class Person implements Comparable<Person>, Serializable {
 	private String email;
 	private String phone;
 	private String notes;
-	
-	public Person () {
-		
+	/**
+	 * Constructor for person object that with no parameters.
+	 */
+	public Person () {	
 	}
-	
+	/**
+	 * Constructor for person object that uses String parameters.
+	 */
 	public Person (String firstName, String lastName, String streetAddress, String email, String phone, String notes) {
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -105,10 +108,14 @@ public class Person implements Comparable<Person>, Serializable {
 	 */
 	public String toString() {
 		String printString="";
-		printString=firstName+" "+lastName+":\n"+"Address: "+ streetAddress +"\n"+"email: "+email+
-		"\n"+"phone: "+phone+"\n"+"notes: "+notes+"\n";
+		printString="First Name: "+firstName+"\n"+"Last Name: "+lastName+"\n"+"Address: "+streetAddress+"\n"+"Email: "+email+
+		"\n"+"Phone: "+phone+"\n"+"Notes: "+notes+"\n";
 		return printString;
 	}
+	/**
+	 * Compares two person objects to return the objects in alphabetical order by last name or
+	 * by first name if the last names are the same.
+	 */
 	@Override
 	public int compareTo(Person person1) {
 		if (this.getLastName().compareToIgnoreCase(person1.getLastName()) > 0) {

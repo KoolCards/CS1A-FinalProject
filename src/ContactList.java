@@ -40,14 +40,6 @@ public class ContactList implements Serializable{
 		personList.clear();
 	}
 	/**
-     * Clears the entire data file
-     */
-	public void clearList() throws IOException{
-		RandomAccessFile file = new RandomAccessFile("C:/Users/kriss/workspace/CS1A-FinalProject/data", "r");
-		file.setLength(0);
-		file.close();
-	}
-	/**
      * Prints the contact list to the console
      */
     public void printList() {
