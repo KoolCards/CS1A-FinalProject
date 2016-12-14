@@ -11,13 +11,15 @@ public class ContactList implements Serializable{
     /**
      * Receives a person object parameter and adds it to a list of people. This method also
      * sorts the people by last name or first name if the last names or the same.
+     * K.R.
      */
 	public void addNewPerson(Person newperson) {
 		personList.add(newperson);
 		Collections.sort(personList);
 	}
     /**
-     * Searches for the Person object by the specified last name and returns the contact information for that person. 
+     * Searches for the Person object by the specified last name and returns the contact information for that person.
+     * R.L.
      */
 	public String searchByLast(String lastName) {
 		String retrieveContactList = "";
@@ -35,12 +37,14 @@ public class ContactList implements Serializable{
 	}
     /**
      * Clears the current contact list
+     * K.S.
      */
-	public void clear() {
+    public void clear() {
 		personList.clear();
 	}
-	/**
+     /**
      * Prints the contact list to the console
+     * R.L.
      */
     public void printList() {
     	for (int counter = 0; counter < personList.size(); counter++) {
@@ -49,6 +53,7 @@ public class ContactList implements Serializable{
     }
     /**
      * Returns a string with each contact in the contact list
+     * K.R.
      */
     public String toString() {
     	String contact = "";
