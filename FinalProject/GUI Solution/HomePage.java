@@ -90,7 +90,9 @@ public class HomePage extends JFrame implements ActionListener {
 	public void disp() {
 		setVisible(true);
 	}
-
+	/*
+	 * Sets up each button to run the desired method
+	 */
 	public void actionPerformed(ActionEvent e) {
 		JButton clickedbutton = (JButton) e.getSource();
 		if (clickedbutton.getText() == "Add a new Contact") {
@@ -106,7 +108,9 @@ public class HomePage extends JFrame implements ActionListener {
 			myContactList.clear();
 		}
 	}
-
+	/*
+	* Default constructor for the HomePage class that sets dimensions for HomePage window
+	*/
 	public HomePage() {
 		this.addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent e) {
@@ -290,7 +294,7 @@ public class HomePage extends JFrame implements ActionListener {
 		private TextArea printTextArea;
 		private JPanel jPanel;
 		/*
-		 * Default constructor for the Print class that
+		 * Default constructor for the Print class that sets dimensions for Print window
 		 */
 		public Print() {
 			setTitle("Contact List");
@@ -318,7 +322,10 @@ public class HomePage extends JFrame implements ActionListener {
 			});
 		}
 	}
-
+	/*
+	 * One object of Search creates a new Search window that allows the user to input data 
+	 * for a last name to search for in the contact list.
+	 */
 	class Search extends JFrame implements ActionListener {
 		private static final long serialVersionUID = -4880328478428515838L;
 		private JTextField lastNameField;
@@ -326,7 +333,9 @@ public class HomePage extends JFrame implements ActionListener {
 		private TextArea listTextArea;
 		private JPanel upJPanel;
 		private JPanel downJPanel;
-		
+		/*
+		 * Default constructor for the Search class that sets dimensions for Search window
+		 */
 		public Search() {
 			this.addWindowListener(new WindowAdapter() {
 				public void windowOpened(WindowEvent e) {
