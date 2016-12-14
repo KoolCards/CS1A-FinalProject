@@ -6,7 +6,7 @@ import java.util.*;
   * One object of class ContactList represents the contact information for one group of people.
   */
 public class ContactList implements Serializable{
-    private ArrayList<Person> personList=new ArrayList<>();
+    private ArrayList<Person> personList=new ArrayList<Person>();
 	private static final long serialVersionUID = 1L;
     /**
      * Receives a person object parameter and adds it to a list of people. This method also
