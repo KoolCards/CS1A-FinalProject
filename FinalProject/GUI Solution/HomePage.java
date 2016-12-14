@@ -23,7 +23,9 @@ public class HomePage extends JFrame implements ActionListener {
 	private static final long serialVersionUID = 3636549296071613133L;
 	private static ContactList myContactList = new ContactList();
 	private static final Point DEFUALT_OPEN_LOCATION = new Point(300, 180);
-
+	/*
+	 * Creates a template for adding new GUI components.
+	 */
 	private static void addComp(JPanel thePanel, JComponent comp, int xPos, int yPos, int compWidth, int compHeight,
 			int place, int stretch) {
 		GridBagConstraints gridConstraints = new GridBagConstraints();
@@ -42,7 +44,9 @@ public class HomePage extends JFrame implements ActionListener {
 	public static void main(String[] args) {
 		new HomePage();
 	}
-
+	/*
+	 * Saves the current contact list to the data file.
+	 */
 	public void save() {
 		FileOutputStream outFile;
 		ObjectOutputStream outObject;
@@ -52,12 +56,15 @@ public class HomePage extends JFrame implements ActionListener {
 			outObject.writeObject(myContactList);
 			outObject.close();
 			outFile.close();
-		} catch (IOException e) {
+		} 
+		catch (IOException e) {
 			System.out.println("Error writing objects to the file: " + e.getMessage());
 		}
 		myContactList.clear();
 	}
-
+	/*
+	 * Opens the contact list from the data file.
+	 */
 	public void open() {
 		FileInputStream inputFile;
 		ObjectInputStream inputObject;
@@ -67,9 +74,11 @@ public class HomePage extends JFrame implements ActionListener {
 			myContactList = (ContactList) inputObject.readObject();
 			inputObject.close();
 			inputFile.close();
-		} catch (IOException e) {
+		} 
+		catch (IOException e) {
 			System.out.println("Error reading object from the file" + e.getMessage());
-		} catch (ClassNotFoundException e) {
+		} 
+		catch (ClassNotFoundException e) {
 			System.out.println("Error in casting to Rectangle: " + e);
 		}
 	}
@@ -86,11 +95,14 @@ public class HomePage extends JFrame implements ActionListener {
 		JButton clickedbutton = (JButton) e.getSource();
 		if (clickedbutton.getText() == "Add a new Contact") {
 			new AddContact();
-		} else if (clickedbutton.getText() == "Print the Contact List") {
+		} 
+		else if (clickedbutton.getText() == "Print the Contact List") {
 			new Print();
-		} else if (clickedbutton.getText() == "Search by lastname") {
+		} 
+		else if (clickedbutton.getText() == "Search by lastname") {
 			new Search();
-		} else if (clickedbutton.getText() == "Clear the contactlist") {
+		} 
+		else if (clickedbutton.getText() == "Clear the contactlist") {
 			myContactList.clear();
 		}
 	}
@@ -127,19 +139,21 @@ public class HomePage extends JFrame implements ActionListener {
 		setVisible(true);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}
-
+	/*
+	 * One object of AddContact creates a new AddContact window that allows the user to input data 
+	 * for a new person in the contact list.
+	 */
 	class AddContact extends JFrame implements ActionListener {
-		/**
-		 * Open a window to add a new Contact
-		 */
 		private static final long serialVersionUID = -623826465110124110L;
 		private JLabel firstNameLabel, lastNameLabel, streetAddressLabel, emailAddressLabel, phoneLabel, notesLabel;
 		private JTextField firstNameText, lastNameText, streetAddressText, emailAddressText, phoneText, notesText;
 		private JButton addContact;
 		private String firstName, lastName, streetAddress, phone, email, notes;
-
+		/*
+		 * Default constructor for the AddContact class that opens a new window for the
+		 * add contact page.
+		 */
 		public AddContact() {
-			// Create the frame, position it and handle closing it
 			this.setLocation(DEFUALT_OPEN_LOCATION);
 			this.setTitle("Add New Contact");
 			setSize(300, 485);
@@ -179,10 +193,8 @@ public class HomePage extends JFrame implements ActionListener {
 			addComp(thePanel, addContact, 0, 13, 1, 1, GridBagConstraints.SOUTHEAST, GridBagConstraints.NONE);
 			addContact.addActionListener(this);
 			this.add(thePanel);
-			// Adjusts the size of the frame to best work for the components
 			this.pack();
 			this.setVisible(true);
-			// Define if the user can resize the frame (true by default)
 			this.setResizable(false);
 			this.addWindowListener(new WindowAdapter() {
 				public void windowOpened(WindowEvent e) {
@@ -200,7 +212,6 @@ public class HomePage extends JFrame implements ActionListener {
 				addNewContact();
 			}
 		}
-
 		/*
 		 * Creates a new person object and adds it to Contact List
 		 */
@@ -214,30 +225,31 @@ public class HomePage extends JFrame implements ActionListener {
 			email = emailAddressText.getText();
 			notes = notesText.getText();
 			String emailFormat = ".*()*.+@\\w+\\.com";
-
 			System.out.println(phone);
 			if (lastName.equals("")) {
 				JOptionPane.showMessageDialog(null, "Please enter last name.");
-			} else if (!email.matches(emailFormat) && !(email.equals(""))) {
+			} 
+			else if (!email.matches(emailFormat) && !(email.equals(""))) {
 				JOptionPane.showMessageDialog(null, "Please enter correct email");
-			} else if (!isPhone(phone) && !(phone.equals(""))) {
+			} 
+			else if (!isPhone(phone) && !(phone.equals(""))) {
 				JOptionPane.showMessageDialog(null, "Please enter correct phone number");
-			} else if (firstName.equals("")) {
+			} 
+			else if (firstName.equals("")) {
 				JOptionPane.showMessageDialog(null, "Please enter first name.");
-			} else {
+			} 
+			else {
 				if (!phone.equals("")) {
 					StringBuilder stringBuilder = new StringBuilder(phone);
 					stringBuilder.insert(3, "-");
 					stringBuilder.insert(7, "-");
 					phone = stringBuilder.toString();
 				}
-				// create a Person object and pass it to ArrayList to save it
 				Person person = new Person(firstName, lastName, streetAddress, email, phone, notes);
-				myContactList.addNewPerson(person);// Add new person to Array
+				myContactList.addNewPerson(person);
 				JOptionPane.showMessageDialog(null, person.toString());
 				clear();
 			}
-
 		}
 
 		public boolean isPhone(String phone) {
@@ -251,13 +263,16 @@ public class HomePage extends JFrame implements ActionListener {
 			if (phone.length() == 10) {
 				if (flag == 0) {
 					return true;
-				} else
+				} 
+				else
 					return false;
-			} else
+			} 
+			else
 				return false;
-
 		}
-
+		/*
+		 * Clears all the fields in the AddContact class.
+		 */
 		public void clear() {
 			firstNameText.setText("");
 			lastNameText.setText("");
@@ -266,13 +281,17 @@ public class HomePage extends JFrame implements ActionListener {
 			emailAddressText.setText("");
 			notesText.setText("");
 		}
-
 	}
-
+	/*
+	 * One object of class Print creates a new Print page that prints the entire contact list
+	 * to the window.
+	 */
 	class Print extends JFrame {
 		private TextArea printTextArea;
 		private JPanel jPanel;
-
+		/*
+		 * Default constructor for the Print class that
+		 */
 		public Print() {
 			setTitle("Contact List");
 			printTextArea = new TextArea(29, 35);
@@ -301,16 +320,13 @@ public class HomePage extends JFrame implements ActionListener {
 	}
 
 	class Search extends JFrame implements ActionListener {
-		/**
-		 * 
-		 */
 		private static final long serialVersionUID = -4880328478428515838L;
 		private JTextField lastNameField;
 		private JButton searchJButton;
 		private TextArea listTextArea;
 		private JPanel upJPanel;
 		private JPanel downJPanel;
-
+		
 		public Search() {
 			this.addWindowListener(new WindowAdapter() {
 				public void windowOpened(WindowEvent e) {
@@ -344,11 +360,10 @@ public class HomePage extends JFrame implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			if (myContactList.searchByLast(lastNameField.getText()).equals("")) {
 				JOptionPane.showMessageDialog(downJPanel, "No contact matched!");
-			} else {
+			} 
+			else {
 				listTextArea.setText(myContactList.searchByLast(lastNameField.getText()));
 			}
-
 		}
 	}
-
 }
