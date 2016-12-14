@@ -40,10 +40,6 @@ public class HomePage extends JFrame implements ActionListener {
 		gridConstraints.fill = stretch;
 		thePanel.add(comp, gridConstraints);
 	}
-
-	public static void main(String[] args) {
-		new HomePage();
-	}
 	/*
 	 * Saves the current contact list to the data file.
 	 */
